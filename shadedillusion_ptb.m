@@ -80,11 +80,11 @@ while 1
     % take user keyboard input, echo it to screen.
     Screen('TextSize', window, 35);
     Screen('TextFont', window, 'Courier');
-    input_color = Ask(window,'enter a number 1,2 or 3 or enter qqq to quit: ',...
+    user_input = Ask(window,'enter a number 1,2 or 3 or enter qqq to quit: ',...
         [1 1 1], [black], 'GetChar','center', 'center');
-    shadedillusion = str2double(input_color);
+    input_color = str2double(user_input);
     
-    if input_color == "qqq" || input_color ~= 1 || input_color ~= 2 || input_color ~= 3
+    if user_input == "qqq" || ~input_color == 1 || ~input_color == 2 || ~input_color == 3
         break
     end
 
