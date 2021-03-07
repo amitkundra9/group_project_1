@@ -9,7 +9,7 @@ illusion(2:2:x, 1:4:4*x) = 1;
 illusion(:, 2:4:4*x) = 1;
 illusion(1:2:x, 3:4:4*x) = 1;
 
-%allows the user to select a white and black checkerboard
+%allows user to select a white and black checkerboard
 if y == 1
     whiteillusion = cat(3, illusion, illusion, illusion);
 
