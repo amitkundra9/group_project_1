@@ -88,7 +88,7 @@ while true
         break
     end
 
-    %eighth page, shows custom illusion
+    %eighth page, shows custom illusion by calling the function offset_squares_fxn
     offset_squares_fxn(doubleheight,doublecolor);
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'offset_squares.png');
