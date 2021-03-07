@@ -1,4 +1,4 @@
-function offsetsquares(x, y)
+function offset_squares(x, y)
 %This function generates an optical illusion in an offset checkerboard
 %pattern, which gives the illusion of slanted lines
 
