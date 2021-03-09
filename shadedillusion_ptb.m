@@ -126,6 +126,23 @@ while 1
 end
 
 time_end = GetSecs;
+% tenth page
+% asking which illusion was the most pronounced.
+Screen('TextSize', window, 35);
+Screen('TextFont', window, 'Courier');
+fav_illusion = Ask(window,'Which illusion (by number) was the most pronounced: ',...
+        [1 1 1], [black], 'GetChar','center', 'center');
+fav_illusion = str2double(fav_illusion);
+
+%storing data about fav illusions to .txt file, calculating mode
+fav_ill_txt = fopen('fav_illusions.txt','a');
+fprintf(fav_ill_txt, '%0.3f\n', fav_illusion);
+fclose(fav_ill_txt);
+compiled_user_time = dlmread('fav_illusions.txt');
+mode_illusion = mode(compiled_user_time);
+
+%calculating the time spent viewing illusions, saving to .txt, calculating
+%the mean for display later
 total_time = time_end - time_start;
 time_out = fopen('time_out.txt','a');
 fprintf(time_out, '%0.3f\n', total_time);
@@ -133,12 +150,21 @@ fclose(time_out);
 compiled_user_time = dlmread('time_out.txt');
 mean_time = mean(compiled_user_time);
 
-% page10
+% page11 - displaying info regarding collected time data
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
         ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [total_time mean_time]),...
-        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+        'center', screenYpixels * 0.5, [1 1 1]); % prints out time to 2 decimals
+Screen('Flip', window);
+KbStrokeWait;
+
+% page12 - displaying info regarding collected fav illusion data
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You thought %d was the most pronounced illusion. \n Most people thought %d was the most pronounced illusion.', [fav_illusion mode_illusion]),...
+        'center', screenYpixels * 0.5, [1 1 1]); 
 Screen('Flip', window);
 KbStrokeWait;
 
