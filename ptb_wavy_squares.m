@@ -29,8 +29,9 @@ DrawFormattedText(window, 'Hello! \n press any key to continue',...
 Screen('Flip', window);
 KbStrokeWait;
 
+start_time = GetSecs; % get real world time when this line is executed
 % page2
-DrawFormattedText(window, 'enjoy some optical illusions',...
+DrawFormattedText(window, 'The first optical illusion is called "the wavy squares"',...
 'center', screenYpixels * 0.5, [1 1 1]);
 Screen('Flip', window);
 KbStrokeWait;
@@ -59,7 +60,7 @@ KbStrokeWait;
 Screen('TextSize', window, 35);
 Screen('TextFont', window, 'Courier');
 DrawFormattedText(window, ...
-    'you can make a customized wavy squares illusion \nby changing the number of squares in each row/column',...
+    'You can make a customized wavy squares illusion \nby changing the number of squares in each row/column',...
     'center', screenYpixels * 0.5, [1 1 1]);
 Screen('Flip', window);
 KbStrokeWait;
@@ -69,7 +70,7 @@ while 1
     % take user keyboard input, echo it to screen.
     Screen('TextSize', window, 35);
     Screen('TextFont', window, 'Courier');
-    input_squares = Ask(window,'enter an even number beween 10 and 40 or enter qqq to quit: ',...
+    input_squares = Ask(window,'Enter an even number beween 10 and 40 or enter qqq to quit: ',...
         [1 1 1], [black], 'GetChar','center', 'center');
     num_squares = str2double(input_squares);
     
@@ -80,7 +81,7 @@ while 1
     % page6
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
-    DrawFormattedText(window, 'here is your custom made illusion',...
+    DrawFormattedText(window, 'Here is your custom made illusion',...
         'center', screenYpixels * 0.5, [1 1 1]);
     Screen('Flip', window);
     KbStrokeWait;
@@ -103,4 +104,16 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
 end
+
+end_time = GetSecs; % get time again
+time_spent = end_time - start_time; % calculate time user spent
+
+% page8
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf('You spent %0.2f seconds on this illusion', time_spent),...
+        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+Screen('Flip', window);
+KbStrokeWait;
+
 sca; 
