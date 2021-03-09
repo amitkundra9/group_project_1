@@ -24,19 +24,13 @@ rr = FrameRate(window);
 [screenXpixels, screenYpixels] = Screen('WindowSize', window);
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
-DrawFormattedText(window, 'Hello! \n press any key to continue',...
+DrawFormattedText(window, 'The next optical illusion is called "the wavy squares"',...
 'center', screenYpixels * 0.5, [1 1 1]);
 Screen('Flip', window);
 KbStrokeWait;
 
 start_time = GetSecs; % get real world time when this line is executed
 % page2
-DrawFormattedText(window, 'The first optical illusion is called "the wavy squares"',...
-'center', screenYpixels * 0.5, [1 1 1]);
-Screen('Flip', window);
-KbStrokeWait;
-
-% page3
 % call function wavy_squares
 wavy_squares(16);
 set(gcf, 'InvertHardCopy', 'off');
@@ -56,7 +50,7 @@ Screen('DrawTexture', window, imageTexture, [], [firstX, firstY, lastX, lastY], 
 Screen('Flip', window);
 KbStrokeWait; 
 
-% page4
+% page3
 Screen('TextSize', window, 35);
 Screen('TextFont', window, 'Courier');
 DrawFormattedText(window, ...
@@ -66,7 +60,7 @@ Screen('Flip', window);
 KbStrokeWait;
 
 while 1
-    % page5
+    % page4
     % take user keyboard input, echo it to screen.
     Screen('TextSize', window, 35);
     Screen('TextFont', window, 'Courier');
@@ -78,7 +72,7 @@ while 1
         break
     end
 
-    % page6
+    % page5
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, 'Here is your custom made illusion',...
@@ -86,7 +80,7 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
     
-    % page7
+    % page6
     % call function wavy_squares (again)
     wavy_squares(num_squares);
     set(gcf, 'InvertHardCopy', 'off');
@@ -107,13 +101,13 @@ end
 
 end_time = GetSecs; % get time again
 time_spent = end_time - start_time; % calculate time user spent
-time_output = fopen('time_output.txt','a');
+time_output = fopen('wavy_squares_time_output.txt','a');
 fprintf(time_output, '%0.3f\n', time_spent);
 fclose(time_output);
-all_user_time = dlmread('time_output.txt');
+all_user_time = dlmread('wavy_squares_time_output.txt');
 avg_time = mean(all_user_time);
 
-% page8
+% page7
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
