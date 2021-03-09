@@ -107,11 +107,17 @@ end
 
 end_time = GetSecs; % get time again
 time_spent = end_time - start_time; % calculate time user spent
+time_output = fopen('time_output.txt','a');
+fprintf(time_output, '%0.3f\n', time_spent);
+fclose(time_output);
+all_user_time = dlmread('time_output.txt');
+avg_time = mean(all_user_time);
 
 % page8
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
-    DrawFormattedText(window, sprintf('You spent %0.2f seconds on this illusion', time_spent),...
+    DrawFormattedText(window, sprintf...
+        ('You spent %0.2f seconds on this illusion. \nAverage user spent %0.2f seconds on this illusion.', [time_spent avg_time]),...
         'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
 Screen('Flip', window);
 KbStrokeWait;
