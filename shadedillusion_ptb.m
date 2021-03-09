@@ -35,7 +35,7 @@ Screen('Flip', window);
 KbStrokeWait;
 
 % third page
-DrawFormattedText(window, 'You will choose a number between 1-3 \n scato select the type of color gradient',...
+DrawFormattedText(window, 'You will choose a number between 1-7 \n to select the type of color gradient',...
 'center', screenYpixels * 0.5, [1 1 1]);
 Screen('Flip', window);
 KbStrokeWait;
@@ -80,7 +80,7 @@ while 1
     % take user keyboard input, echo it to screen.
     Screen('TextSize', window, 35);
     Screen('TextFont', window, 'Courier');
-    user_input = Ask(window,'enter a number 1,2 or 3 or enter qqq to quit: ',...
+    user_input = Ask(window,'enter an integer 1-7 or enter qqq to quit: ',...
         [1 1 1], [black], 'GetChar','center', 'center');
     input_color = str2double(user_input);
     

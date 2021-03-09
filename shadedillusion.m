@@ -23,6 +23,14 @@ elseif color_map == 2
     colormap parula 
 elseif color_map == 3
     colormap cool
+elseif color_map == 4
+    colormap winter
+elseif color_map == 5
+    colormap copper
+elseif color_map == 6
+    colormap pink
+elseif color_map == 7
+    colormap bone
 end
 
 %displays image
