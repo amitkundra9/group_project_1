@@ -62,6 +62,9 @@ Screen('Flip', window);
 KbStrokeWait;
 %introduces first illusion
 
+start_time = GetSecs;
+%gets real time of execution of this line
+
 make_squares(7);
 set(gcf,'InvertHardCopy', 'off');
 saveas(gcf, 'first_grid_illusion.png');
@@ -101,7 +104,7 @@ KbStrokeWait;
 while 1
     Screen('TextSize', window, 60);
     Screen('TextFont', window, 'Courier');
-    input_squares = Ask(window,'Enter an integer (m) between 5 and 14 to make an m x m matrix, or enter qqq to quit: ',...
+    input_squares = Ask(window,'Enter integer m from 5-14 to make an m x m grid (try small & large inputs), or enter qqq to quit: ',...
         [0 0 0], [white], 'GetChar','center', 'center');
     givenNumber = str2double(input_squares);
     
@@ -112,6 +115,7 @@ while 1
     
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
+    
     DrawFormattedText(window, 'Here is your custom made grid illusion:',...
         'center', screenYpixels * 0.5, [0 0 0]);
     Screen('Flip', window);
@@ -121,8 +125,8 @@ while 1
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'second_grid_illusion.png');
     close(gcf);
-    %calling my function for display on the screen,
-    %with the user input value givenNumber to start
+    %calling calling my function for display on the screen,
+    %with the user input value numSquares to start
     
     the_image = imread('second_grid_illusion.png');
     [s1, s2, ~] = size(the_image);
@@ -149,10 +153,58 @@ while 1
     
 end
     
-    
-    
+end_time = GetSecs;
+%gets real time at end of illusion
+
+Screen('TextSize', window, 20);
+Screen('TextFont', window, 'Courier');
+more_prounounced_illusion = Ask(window,'Was the illusion more pronounced with less or more squares? Answer (1) for less, or (2) for more : ',...
+        [0 0 0], [white], 'GetChar','center', 'center');
+more_prounounced_illusion = str2double(more_prounounced_illusion);
+%asking the user if they felt the illusion was more pronounced with more or
+%less squares
+
+pronounced_txt = fopen('pronounced_illusion.txt','a');
+fprintf(pronounced_txt, '%0.3f\n', fav_illusion);
+fclose(pronounced_txt);
+compiled_user_time = dlmread('pronounced_illusion.txt');
+mode_pronounced = mode(compiled_user_time);
+%storing user info about which amount of squares made the illusion seem
+%more pronounced, and calculating the mode
+
+
+
+time_spent = end_time - start_time;
+%calculates the total time the user spent on the illusion
+
+time_output = fopen('make_squares_time_output.txt','a');
+fprintf(time_output, '%0.3f\n',time_spent);
+fclose(time_output);
+all_user_time = dlmread('make_squares_time_output.txt');
+avg_time = mean(all_user_time);
+%calculates average time spent by all users on the illusion
+
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.', [more_pronounced_illusion mode_pronounced]),...
+        'center', screenYpixels * 0.5, [1 1 1]); 
+Screen('Flip', window);
+KbStrokeWait;
+%displays to the user the collected info about which number of squares
+%users most often felt led to more pronounced illusions
+
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [time_spent avg_time]),...
+        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+Screen('Flip', window);
+KbStrokeWait;
+%displays info to user about our collected time data
+
+
 
 
 sca;
-
 
