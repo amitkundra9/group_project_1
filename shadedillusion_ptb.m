@@ -75,6 +75,16 @@ DrawFormattedText(window, ...
 Screen('Flip', window);
 KbStrokeWait;
 
+%sixth page
+Screen('TextSize', window, 35);
+Screen('TextFont', window, 'Courier');
+DrawFormattedText(window, ...
+    'The two squares should look \n like different colors \n but they''re actually the same',...
+    'center', screenYpixels * 0.5, [1 1 1]);
+Screen('Flip', window);
+KbStrokeWait;
+
+time_start = GetSecs;
 while 1
     % seventh page
     % take user keyboard input, echo it to screen.
@@ -114,4 +124,22 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
 end
+
+time_end = GetSecs;
+total_time = time_end - time_start;
+time_out = fopen('time_out.txt','a');
+fprintf(time_out, '%0.3f\n', total_time);
+fclose(time_out);
+compiled_user_time = dlmread('time_out.txt');
+mean_time = mean(compiled_user_time);
+
+% page10
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [total_time mean_time]),...
+        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+Screen('Flip', window);
+KbStrokeWait;
+
 sca;
