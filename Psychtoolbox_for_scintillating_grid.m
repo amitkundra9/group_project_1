@@ -49,26 +49,32 @@ Priority(topPriorityLevel);
 [screenXpixels, screenYpixels] = Screen('WindowSize', window);
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
-DrawFormattedText(window, 'Hello and Welcome to our Optical Illusions Project. \n \n You can always press any key to continue to the next page.',...
+DrawFormattedText(window, 'Now, let''s check out some more illusions! \n \n Remember, you can always press any key to continue to the next page.',...
 'center', screenYpixels * 0.5, [0 0 0]);
 Screen('Flip', window);
 KbStrokeWait;
-%adding text for an intro page, and telling the user that they can press
+%adding text for an intro to the next illusion, and reminding the user that they can press
 %any key always to move to the next page
 
-DrawFormattedText(window, 'This first illusion is simple. \n \n It shows a number of black squares, \n and you might see black dots at the intersections, \n where there aren''t any',...
+DrawFormattedText(window, 'This next illusion is a bit more interesting. \n \n It shows a number of black squares, \n with gray lines in between them, \n and white dots at the intersections.',...
 'center', screenYpixels * 0.5, [0 0 0]);
 Screen('Flip', window);
 KbStrokeWait;
-%introduces first illusion
+%introduces scintillating grid illusion
 
-make_squares(7);
+DrawFormattedText(window, 'Some of these white dots might appear black to you however, \n especially if you focus your vision on one specific dot. \n This is the scintilalting grid illusion. \n Check it out!',...
+'center', screenYpixels * 0.5, [0 0 0]);
+Screen('Flip', window);
+KbStrokeWait;
+%continues introducing scintillating grid illusion
+
+scintillating_grid_final(7);
 set(gcf,'InvertHardCopy', 'off');
-saveas(gcf, 'first_grid_illusion.png');
+saveas(gcf, 'first_scintillating_grid.png');
 close(gcf);
 %calling my function for display on the screen, with 35 squares to start
 
-the_image = imread('first_grid_illusion.png');
+the_image = imread('first_scintillating_grid.png');
 [s1, s2, ~] = size(the_image);
 
 if s1 > screenYpixels || s2 > screenXpixels
@@ -91,7 +97,7 @@ KbStrokeWait;
 
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
-DrawFormattedText(window, 'You can make any m x m grid of squares appear in this grid illusion!',...
+DrawFormattedText(window, 'Again, you can make any m x m grid of squares appear in this grid illusion!',...
 'center', screenYpixels * 0.5, [0 0 0]);
 Screen('Flip', window);
 KbStrokeWait;
@@ -101,11 +107,11 @@ KbStrokeWait;
 while 1
     Screen('TextSize', window, 60);
     Screen('TextFont', window, 'Courier');
-    input_squares = Ask(window,'Enter an integer (m) between 5 and 14 to make an m x m matrix, or enter qqq to quit: ',...
+    input_squares = Ask(window,'Enter an integer (m) between 7 and 15 to make an m x m matrix, or enter qqq to quit: ',...
         [0 0 0], [white], 'GetChar','center', 'center');
     givenNumber = str2double(input_squares);
     
-    if input_squares == "qqq" || givenNumber<5 || givenNumber>14
+    if input_squares == "qqq" || givenNumber<7 || givenNumber>15
         break
     end
     %takes the user input and echoes to screen
@@ -117,14 +123,14 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
     
-    make_squares(givenNumber);
+    scintillating_grid_final(givenNumber);
     set(gcf, 'InvertHardCopy', 'off');
-    saveas(gcf,'second_grid_illusion.png');
+    saveas(gcf,'second_scintillating_grid.png');
     close(gcf);
     %calling my function for display on the screen,
     %with the user input value givenNumber to start
     
-    the_image = imread('second_grid_illusion.png');
+    the_image = imread('second_scintillating_grid.png');
     [s1, s2, ~] = size(the_image);
 
     if s1 > screenYpixels || s2 > screenXpixels
@@ -154,5 +160,4 @@ end
 
 
 sca;
-
 
