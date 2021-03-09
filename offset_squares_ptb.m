@@ -29,6 +29,8 @@ DrawFormattedText(window, 'Time for another illusion... \n Press any key to go t
 Screen('Flip', window);
 KbStrokeWait;
 
+start_time = GetSecs;
+
 %second page, displays explanatory text, pressing any button will navigate
 %to next slide
 DrawFormattedText(window, 'This is the offset squares illusion. \n It uses an offset checkerboard \n to make the squares look slanted',...
@@ -67,8 +69,8 @@ while true
     %sixth page, asks user for height input
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
-    height = Ask(window,'How tall should your illusion be? (Integer between 1 and 30, qqq to quit)',...
-        [1 1 1], [black], 'GetChar','center', 'center');
+    height = Ask(window,'How tall should your illusion be? (Integer between 1 and 30, qqq to quit):', [1 1 1], [black], 'GetChar','center', 'center');
+        
     doubleheight = str2double(height);
     
     %breaks if input is outside of parameters or the user quits with "qqq"
@@ -79,12 +81,12 @@ while true
     %seventh page, asks user for color input
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
-    color = Ask(window,'What color should your illusion to be? (1 = white, 2 = cyan, 3 = pink)',...
+    color = Ask(window,'What color should your illusion to be? (1 = white, 2 = cyan, 3 = pink):',...
     [1 1 1], [black], 'GetChar','center', 'center');
     doublecolor = str2double(color);
     
     %breaks if input is outside of parameters
-    if doublecolor < 1 || doublecolor > 3
+    if color == "qqq" || doublecolor < 1 || doublecolor > 3
         break
     end
 
@@ -100,4 +102,24 @@ while true
     Screen('Flip', window);
     KbStrokeWait;
 end
-sca;
+
+%opens txt file and stores the time spent in it, also calculates the
+%average time of all users
+end_time = GetSecs; % store the end time in end_time
+time_spent = end_time - start_time;
+time_output = fopen('offset_squares_time_output.txt','a');
+fprintf(time_output, '%0.3f\n', time_spent);
+fclose(time_output);
+all_user_time = dlmread('offset_squares_time_output.txt');
+avg_time = mean(all_user_time);
+
+% ninth page
+% displays the average time and the amount of time the user spent on this
+% section to two decimal places
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf('You spent %0.2f seconds in this section. \n The average user spent %0.2f seconds.', [time_spent avg_time]),'center', screenYpixels * 0.5, [1 1 1]);
+Screen('Flip', window);
+KbStrokeWait;
+
+sca; 
