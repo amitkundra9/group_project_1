@@ -811,6 +811,7 @@ while 1
         section_index = 1;
     else
         sca;
+        return
     end
 end
 
