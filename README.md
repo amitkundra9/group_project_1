@@ -12,12 +12,12 @@ Each group member created optical illusions using MatLab matrix manipulation, an
   
   The "project_final.m" is the combined file, with the whole experiment and table of contents loaded onto it.
     When you run the program, you will see the table of contents asking you to input which (specified) page you'd like to navigate to by selecting a number from your keyboard. 
-    In order of appearance, the other "ptb" files that were combined into this are:
-      "Psychtoolbox_for_make_squares_final.m"
-      "Psychtoolbox_for_scintillating_grid.m"
-      "offset_squares_ptb.m"
-      "ptb_wavy_squares.m"
-      "shadedillusion_ptb.m"
+    In order of appearance, the other "ptb" files that were combined into this are:\n
+      "Psychtoolbox_for_make_squares_final.m"\n
+      "Psychtoolbox_for_scintillating_grid.m"\n
+      "offset_squares_ptb.m"\n
+      "ptb_wavy_squares.m"\n
+      "shadedillusion_ptb.m"\n
       
         Each file corresponds to a different section in the experiment, and a different number in the table of contents. 
         Each of the sections prompts the user with text, describing how to navigate the section, and then showing an example of the illusion. 
