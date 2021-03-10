@@ -125,8 +125,8 @@ while 1
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'second_grid_illusion.png');
     close(gcf);
-    %calling calling my function for display on the screen,
-    %with the user input value numSquares to start
+    %calling my function for display on the screen,
+    %with the user input value givenNumber to start
     
     the_image = imread('second_grid_illusion.png');
     [s1, s2, ~] = size(the_image);
