@@ -69,7 +69,9 @@ while true
     %sixth page, asks user for height input
     Screen('TextSize', window, 40);
     Screen('TextFont', window, 'Courier');
-    height = Ask(window,'How tall should your illusion be? (Integer between 1 and 30, qqq to quit):', [1 1 1], [black], 'GetChar','center', 'center');
+    DrawFormattedText(window, 'How tall should your illusion be?',...
+        'center', screenYpixels * 0.5, [1 1 1]);
+    height = Ask(window,'Enter an integer between 1 and 30 (or qqq to quit) and then press enter:', [1 1 1], [black], 'GetChar','center', 'center');
         
     doubleheight = str2double(height);
     
