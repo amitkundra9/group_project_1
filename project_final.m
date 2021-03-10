@@ -43,14 +43,14 @@ while 1
         Screen('TextSize', window, 35);
         Screen('TextFont', window, 'Courier');
         DrawFormattedText(window, 'Hello and Welcome to our Optical Illusions Project. \n \n You can always press any key to continue to the next page.',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %adding text for an intro page, and telling the user that they can press
         %any key always to move to the next page
         
         DrawFormattedText(window, 'This first illusion is simple \n \n It shows a number of black squares, \n and you might see black dots at the intersections, \n where there aren''t any',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %introduces first illusion
@@ -82,10 +82,10 @@ while 1
         %calls the flip function so we can see the image drawn on the screen
         KbStrokeWait;
         
-        Screen('TextSize', window, 40);
+        Screen('TextSize', window, 35);
         Screen('TextFont', window, 'Courier');
         DrawFormattedText(window, 'You can choose how many squares you want to see in this grid illusion!',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %we will be allowing the user to input the number of squares they want to
@@ -95,7 +95,7 @@ while 1
             Screen('TextSize', window, 60);
             Screen('TextFont', window, 'Courier');
             input_squares = Ask(window,'Enter a number between 25 and 70, and divisible by 5, or enter qqq to quit: ',...
-                [0 0 0], [white], 'GetChar','center', 'center');
+                [1 1 1], [black], 'GetChar','center', 'center');
             numSquares = str2double(input_squares);
             
             if input_squares == "qqq" || ~mod(numSquares,5)==0 || numSquares<25 || numSquares>70
@@ -106,7 +106,7 @@ while 1
             Screen('TextSize', window, 40);
             Screen('TextFont', window, 'Courier');
             DrawFormattedText(window, 'Here is your custom made grid illusion:',...
-                'center', screenYpixels * 0.5, [0 0 0]);
+                'center', screenYpixels * 0.5, [1 1 1]);
             Screen('Flip', window);
             KbStrokeWait;
             
@@ -146,20 +146,20 @@ while 1
         Screen('TextSize', window, 35);
         Screen('TextFont', window, 'Courier');
         DrawFormattedText(window, 'Now, let''s check out some more illusions! \n \n Remember, you can always press any key to continue to the next page.',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %adding text for an intro to the next illusion, and reminding the user that they can press
         %any key always to move to the next page
         
         DrawFormattedText(window, 'This next illusion is a bit more interesting. \n \n It shows a number of black squares, \n with gray lines in between them, \n and white dots at the intersections.',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %introduces scintillating grid illusion
         
         DrawFormattedText(window, 'Some of these white dots might appear black to you however, \n especially if you focus your vision on one specific dot. \n This is the scintilalting grid illusion. \n Check it out!',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %continues introducing scintillating grid illusion
@@ -197,7 +197,7 @@ while 1
         Screen('TextSize', window, 40);
         Screen('TextFont', window, 'Courier');
         DrawFormattedText(window, 'Again, you can make any m x m grid of squares appear in this grid illusion!',...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %we will be allowing the user to input the number of squares they want to
@@ -207,7 +207,7 @@ while 1
             Screen('TextSize', window, 60);
             Screen('TextFont', window, 'Courier');
             input_squares = Ask(window,'Enter integer m from 7-15 to make an m x m grid (try small & large inputs), or enter qqq to quit: ',...
-                [0 0 0], [white], 'GetChar','center', 'center');
+                [1 1 1], [black], 'GetChar','center', 'center');
             givenNumber = str2double(input_squares);
             
             if input_squares == "qqq" || givenNumber<7 || givenNumber>15
@@ -218,7 +218,7 @@ while 1
             Screen('TextSize', window, 40);
             Screen('TextFont', window, 'Courier');
             DrawFormattedText(window, 'Here is your custom made grid illusion:',...
-                'center', screenYpixels * 0.5, [0 0 0]);
+                'center', screenYpixels * 0.5, [1 1 1]);
             Screen('Flip', window);
             KbStrokeWait;
             
@@ -260,7 +260,7 @@ while 1
         Screen('TextSize', window, 20);
         Screen('TextFont', window, 'Courier');
         more_prounounced_scintillating = Ask(window,'Was the illusion more pronounced with less or more squares? Answer (1) for less, or (2) for more : ',...
-            [0 0 0], [white], 'GetChar','center', 'center');
+            [1 1 1], [black], 'GetChar','center', 'center');
         more_prounounced_scintillating = str2double(more_prounounced_scintillating);
         %asking the user if they felt the illusion was more pronounced with more or
         %less squares
@@ -289,7 +289,7 @@ while 1
         DrawFormattedText(window, sprintf...
             ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.',...
             [more_prounounced_scintillating mode_pronounced]),...
-            'center', screenYpixels * 0.5, [0 0 0]);
+            'center', screenYpixels * 0.5, [1 1 1]);
         Screen('Flip', window);
         KbStrokeWait;
         %displays to the user the collected info about which number of squares
@@ -299,7 +299,7 @@ while 1
         Screen('TextFont', window, 'Courier');
         DrawFormattedText(window, sprintf...
             ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [time_spent_scint avg_time_scint]),...
-            'center', screenYpixels * 0.5, [0 0 0]); % print out time to 2 decimals
+            'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
         Screen('Flip', window);
         KbStrokeWait;
         %displays info to user about our collected time data
