@@ -65,7 +65,7 @@ KbStrokeWait;
 start_time = GetSecs;
 %gets real time of execution of this line
 
-make_squares(7);
+make_squares_final(7);
 set(gcf,'InvertHardCopy', 'off');
 saveas(gcf, 'first_grid_illusion.png');
 close(gcf);
@@ -121,7 +121,7 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
     
-    make_squares(givenNumber);
+    make_squares_final(givenNumber);
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'second_grid_illusion.png');
     close(gcf);
