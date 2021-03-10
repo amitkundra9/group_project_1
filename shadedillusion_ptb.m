@@ -167,5 +167,10 @@ Screen('TextFont', window, 'Courier');
         'center', screenYpixels * 0.5, [1 1 1]); 
 Screen('Flip', window);
 KbStrokeWait;
-
+%%psychtoolbox for the 'shadedillusion' - in total, including internet
+%%searches this took around 8 hours to put together the 'slideshow' aspect. After that, around 3
+%%hours of debugging and consulting with group members to resolve issues
+%%and establish continuity with other aspects. The interactive elements,
+%%including exporting the user data to a txt file and then calling it back
+%%into this script took another 2 hours, with an hour to debug. -amit
 sca;

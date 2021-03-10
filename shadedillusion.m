@@ -1,7 +1,7 @@
 function shadedillusion(color_map)
 
 img = repmat(0:255,256,1); %creates baseline matrix with squares at appropriate posistions
-
+%this illusion took 2 hours to put together - amit
 %creates little square on left sisde
 for ii = 48:80
     for jj = 112:144
