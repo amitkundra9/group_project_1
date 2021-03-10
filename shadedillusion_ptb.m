@@ -159,6 +159,7 @@ Screen('TextFont', window, 'Courier');
 Screen('Flip', window);
 KbStrokeWait;
 
+
 % page12 - displaying info regarding collected fav illusion data
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
@@ -174,3 +175,4 @@ KbStrokeWait;
 %%including exporting the user data to a txt file and then calling it back
 %%into this script took another 2 hours, with an hour to debug. -amit
 sca;
+
