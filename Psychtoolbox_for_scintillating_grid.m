@@ -170,7 +170,7 @@ more_prounounced_scintillating = str2double(more_prounounced_scintillating);
 %less squares
 
 scintillating_txt = fopen('pronounced_scintillating.txt','a');
-fprintf(scintillating_txt, '%0.3f\n', fav_illusion);
+fprintf(scintillating_txt, '%0.3f\n', more_pronounced_scintillating);
 fclose(scintillating_txt);
 compiled_user_time_scint = dlmread('pronounced_scintillating.txt');
 mode_pronounced = mode(compiled_user_time_scint);
