@@ -170,7 +170,7 @@ more_prounounced_scintillating = str2double(more_prounounced_scintillating);
 %less squares
 
 scintillating_txt = fopen('pronounced_scintillating.txt','a');
-fprintf(scintillating_txt, '%0.3f\n', fav_illusion);
+fprintf(scintillating_txt, '%0.3f\n', more_prounounced_scintillating);
 fclose(scintillating_txt);
 compiled_user_time_scint = dlmread('pronounced_scintillating.txt');
 mode_pronounced = mode(compiled_user_time_scint);
@@ -192,7 +192,8 @@ avg_time_scint = mean(all_user_time_scint);
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
-        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.', [more_pronounced_illusion mode_pronounced]),...
+        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.',...
+        [more_prounounced_scintillating mode_pronounced]),...
         'center', screenYpixels * 0.5, [0 0 0]); 
 Screen('Flip', window);
 KbStrokeWait;

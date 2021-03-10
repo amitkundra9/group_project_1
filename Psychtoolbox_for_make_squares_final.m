@@ -65,7 +65,7 @@ KbStrokeWait;
 start_time = GetSecs;
 %gets real time of execution of this line
 
-make_squares(7);
+make_squares_final(7);
 set(gcf,'InvertHardCopy', 'off');
 saveas(gcf, 'first_grid_illusion.png');
 close(gcf);
@@ -121,7 +121,7 @@ while 1
     Screen('Flip', window);
     KbStrokeWait;
     
-    make_squares(givenNumber);
+    make_squares_final(givenNumber);
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'second_grid_illusion.png');
     close(gcf);
@@ -165,7 +165,7 @@ more_prounounced_illusion = str2double(more_prounounced_illusion);
 %less squares
 
 pronounced_txt = fopen('pronounced_illusion.txt','a');
-fprintf(pronounced_txt, '%0.3f\n', fav_illusion);
+fprintf(pronounced_txt, '%d\n', more_prounounced_illusion);
 fclose(pronounced_txt);
 compiled_user_time = dlmread('pronounced_illusion.txt');
 mode_pronounced = mode(compiled_user_time);
@@ -187,7 +187,8 @@ avg_time = mean(all_user_time);
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
-        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.', [more_pronounced_illusion mode_pronounced]),...
+        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.',...
+        [more_pronounced_illusion mode_pronounced]),...
         'center', screenYpixels * 0.5, [0 0 0]); 
 Screen('Flip', window);
 KbStrokeWait;

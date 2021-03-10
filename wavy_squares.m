@@ -3,7 +3,7 @@
 % illusion that makes the squares seem wavy.
 % The input num_squares need to be an even number
 
-function  wavy_squares(num_squares)
+function  wavy_squares(num_squares, circle_r)
 
 assert(isnumeric(num_squares),'Input must be numeric.') 
 assert(mod(num_squares,2)==0,'Input must be an even number.') 
@@ -36,8 +36,8 @@ for ii = 1:num_squares+1
     % plot black circles centered at (x1,y) with radius = 8
     for x1 = x1_all(1:end)
         angle_step = 0:pi/50:2*pi;
-        coordinate_x = 8 * cos(angle_step) + x1;
-        coordinate_y = 8 * sin(angle_step) + y;
+        coordinate_x = circle_r * cos(angle_step) + x1;
+        coordinate_y = circle_r * sin(angle_step) + y;
         plot(coordinate_x, coordinate_y);
         fill(coordinate_x, coordinate_y,'k','LineStyle','none');
     end
@@ -46,8 +46,8 @@ for ii = 1:num_squares+1
     % plot  white circles centered at (x2,y) with radius = 8
     for x2 = x2_all(1:end)
         angle_step = 0:pi/50:2*pi;
-        coordinate_x = 8 * cos(angle_step) + x2;
-        coordinate_y = 8 * sin(angle_step) + y;
+        coordinate_x = circle_r * cos(angle_step) + x2;
+        coordinate_y = circle_r * sin(angle_step) + y;
         plot(coordinate_x, coordinate_y);
         fill(coordinate_x, coordinate_y,'w','LineStyle','none');
     end
