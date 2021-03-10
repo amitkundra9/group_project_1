@@ -188,7 +188,7 @@ Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
         ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.', [more_pronounced_illusion mode_pronounced]),...
-        'center', screenYpixels * 0.5, [1 1 1]); 
+        'center', screenYpixels * 0.5, [0 0 0]); 
 Screen('Flip', window);
 KbStrokeWait;
 %displays to the user the collected info about which number of squares
@@ -198,7 +198,7 @@ Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
         ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [time_spent avg_time]),...
-        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+        'center', screenYpixels * 0.5, [0 0 0]); % print out time to 2 decimals
 Screen('Flip', window);
 KbStrokeWait;
 %displays info to user about our collected time data
