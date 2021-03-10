@@ -68,6 +68,9 @@ Screen('Flip', window);
 KbStrokeWait;
 %continues introducing scintillating grid illusion
 
+start_time_scint = GetSecs;
+%gets real time of execution of this line
+
 scintillating_grid_final(7);
 set(gcf,'InvertHardCopy', 'off');
 saveas(gcf, 'first_scintillating_grid.png');
@@ -107,7 +110,7 @@ KbStrokeWait;
 while 1
     Screen('TextSize', window, 60);
     Screen('TextFont', window, 'Courier');
-    input_squares = Ask(window,'Enter an integer (m) between 7 and 15 to make an m x m matrix, or enter qqq to quit: ',...
+    input_squares = Ask(window,'Enter integer m from 7-15 to make an m x m grid (try small & large inputs), or enter qqq to quit: ',...
         [0 0 0], [white], 'GetChar','center', 'center');
     givenNumber = str2double(input_squares);
     
@@ -154,10 +157,58 @@ while 1
     
     
 end
-    
+
+end_time_scint = GetSecs;
+%gets real time at end of illusion
+
+Screen('TextSize', window, 20);
+Screen('TextFont', window, 'Courier');
+more_prounounced_scintillating = Ask(window,'Was the illusion more pronounced with less or more squares? Answer (1) for less, or (2) for more : ',...
+        [0 0 0], [white], 'GetChar','center', 'center');
+more_prounounced_scintillating = str2double(more_prounounced_scintillating);
+%asking the user if they felt the illusion was more pronounced with more or
+%less squares
+
+scintillating_txt = fopen('pronounced_scintillating.txt','a');
+fprintf(scintillating_txt, '%0.3f\n', fav_illusion);
+fclose(scintillating_txt);
+compiled_user_time_scint = dlmread('pronounced_scintillating.txt');
+mode_pronounced = mode(compiled_user_time_scint);
+%storing user info about which amount of squares made the illusion seem
+%more pronounced, and calculating the mode
+
+
+
+time_spent_scint = end_time_scint - start_time_scint;
+%calculates the total time the user spent on the illusion
+
+time_output_scint = fopen('make_squares_time_output.txt','a');
+fprintf(time_output_scint, '%0.3f\n',time_spent_scint);
+fclose(time_output_scint);
+all_user_time_scint = dlmread('make_squares_time_output.txt');
+avg_time_scint = mean(all_user_time_scint);
+%calculates average time spent by all users on the illusion
+
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You thought option %d led to the most pronounced illusion. \n Most people thought option %d led to the most pronounced illusion.', [more_pronounced_illusion mode_pronounced]),...
+        'center', screenYpixels * 0.5, [1 1 1]); 
+Screen('Flip', window);
+KbStrokeWait;
+%displays to the user the collected info about which number of squares
+%users most often felt led to more pronounced illusions
+
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You spent %0.2f seconds on this illusion. \nThe average user spent %0.2f seconds on this illusion.', [time_spent_scint avg_time_scint]),...
+        'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
+Screen('Flip', window);
+KbStrokeWait;
+%displays info to user about our collected time data
     
     
 
 
 sca;
-
