@@ -263,7 +263,7 @@ while 1
         while 1
             Screen('TextSize', window, 35);
             Screen('TextFont', window, 'Courier');
-            input_squares = Ask(window,'Enter an integer from 5-14 (try small & large inputs), or enter qqq to quit: ',...
+            input_squares = Ask(window,'Enter an integer from 7-15 (try small & large inputs), or enter qqq to quit: ',...
                 [1 1 1], [black], 'GetChar','center', 'center');
             givenNumber = str2double(input_squares);
             
