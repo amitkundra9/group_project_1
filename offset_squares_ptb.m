@@ -103,6 +103,20 @@ while true
     KbStrokeWait;
 end
 
+%ninth page, asks user for color input
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+best_height = Ask(window,'Which size produced the best illusion?:',...
+[1 1 1], [black], 'GetChar','center', 'center');
+best_height = str2double(best_height);
+
+%storing best height in separate txt file
+best_height_txt = fopen('offset_squares_height_output.txt','a');
+fprintf(best_height_txt, '%0.3f\n', best_height);
+fclose(best_height_txt);
+aggregate_user_time = dlmread('offset_squares_height_output.txt');
+average_height = mean(aggregate_user_time);
+
 %opens txt file and stores the time spent in it, also calculates the
 %average time of all users
 end_time = GetSecs; % store the end time in end_time
@@ -113,12 +127,21 @@ fclose(time_output);
 all_user_time = dlmread('offset_squares_time_output.txt');
 avg_time = mean(all_user_time);
 
-% ninth page
+% tenth page
 % displays the average time and the amount of time the user spent on this
 % section to two decimal places
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf('You spent %0.2f seconds in this section. \n The average user spent %0.2f seconds.', [time_spent avg_time]),'center', screenYpixels * 0.5, [1 1 1]);
+Screen('Flip', window);
+KbStrokeWait;
+
+% eleventh page - displaying best height info
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You thought %d was the best height. \n The average favorite height was %.0f', [best_height average_height]),...
+        'center', screenYpixels * 0.5, [1 1 1]); 
 Screen('Flip', window);
 KbStrokeWait;
 
