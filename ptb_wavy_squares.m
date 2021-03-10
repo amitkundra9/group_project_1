@@ -32,7 +32,7 @@ KbStrokeWait;
 start_time = GetSecs; % get real world time when this line is executed
 % page2
 % call function wavy_squares
-wavy_squares(16);
+wavy_squares(18,8);
 set(gcf, 'InvertHardCopy', 'off');
 saveas(gcf,'wavy_squares.png');
 close(gcf);
@@ -82,7 +82,7 @@ while 1
     
     % page6
     % call function wavy_squares (again)
-    wavy_squares(num_squares);
+    wavy_squares(num_squares,8);
     set(gcf, 'InvertHardCopy', 'off');
     saveas(gcf,'wavy_squares.png');
     close(gcf);
@@ -99,6 +99,65 @@ while 1
     KbStrokeWait;
 end
 
+% page7
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+DrawFormattedText(window, ...
+    'Which one of the following illusions is more pronounced?',...
+    'center', screenYpixels * 0.5, [1 1 1]);
+Screen('Flip', window);
+KbStrokeWait;
+
+% page8
+% side by side comparison, different circle_r
+subplot(1,2,1);
+wavy_squares(16,4);
+subplot(1,2,2);
+wavy_squares(16,8);
+set(gcf, 'InvertHardCopy', 'off');
+saveas(gcf,'wavy_squares.png');
+close(gcf);
+
+% scale image to fit screen
+the_image = imread('wavy_squares.png');
+[s1, s2, ~] = size(the_image);
+scale = 1.8*min(screenXpixels/1.5/s1,screenYpixels/1.5/s2);
+firstX = (screenXpixels-s2*scale)/2; firstY = (screenYpixels-s1*scale)/2;
+lastX = firstX+s2*scale; lastY = firstY+s1*scale;
+
+% display image
+imageTexture = Screen('MakeTexture', window, the_image);
+Screen('DrawTexture', window, imageTexture, [], [firstX, firstY, lastX, lastY], 0);
+Screen('Flip', window);
+KbStrokeWait; 
+
+% page 9
+% record user choice
+Screen('TextSize', window, 40);
+Screen('TextFont', window, 'Courier');
+user_choice = Ask(window,'Enter 1 for left and 2 for right: ',...
+    [1 1 1], [black], 'GetChar','center', 'center');
+user_choice = str2double(user_choice);
+
+choice_output = fopen('wavy_squares_choice_output.txt','a');
+fprintf(choice_output, '%d\n', user_choice);
+fclose(choice_output);
+all_user_choice = dlmread('wavy_squares_choice_output.txt');
+
+% report user choice and average user response
+count1 = numel(find(all_user_choice==1));
+count2 = numel(find(all_user_choice==2));
+num_count1 = 100*count1/length(all_user_choice);
+num_count2 = 100*count2/length(all_user_choice);
+Screen('TextSize', window, 35);
+Screen('TextFont', window, 'Courier');
+    DrawFormattedText(window, sprintf...
+        ('You chose illusion %d. \n%d%% of the users chose illusion 1, and %d%% chose illusion 2.',...
+        [user_choice num_count1 num_count2]),...
+        'center', screenYpixels * 0.5, [1 1 1]);
+Screen('Flip', window);
+KbStrokeWait;
+
 end_time = GetSecs; % get time again
 time_spent = end_time - start_time; % calculate time user spent
 time_output = fopen('wavy_squares_time_output.txt','a');
@@ -107,11 +166,12 @@ fclose(time_output);
 all_user_time = dlmread('wavy_squares_time_output.txt');
 avg_time = mean(all_user_time);
 
-% page7
+% page10
 Screen('TextSize', window, 40);
 Screen('TextFont', window, 'Courier');
     DrawFormattedText(window, sprintf...
-        ('You spent %0.2f seconds on this illusion. \nAverage user spent %0.2f seconds on this illusion.', [time_spent avg_time]),...
+        ('You spent %0.2f seconds on this illusion. \nAverage user spent %0.2f seconds on this illusion.',...
+        [time_spent avg_time]),...
         'center', screenYpixels * 0.5, [1 1 1]); % print out time to 2 decimals
 Screen('Flip', window);
 KbStrokeWait;
