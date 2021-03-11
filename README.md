@@ -32,7 +32,6 @@ Each group member created optical illusions using MatLab matrix manipulation, an
   
   In order to run this project, load "project_final.m", and run the script using the "Run" button in MatLab.
   
-  We were unable to record and input a video into the readme, because PsychToolbox did not allow us to record our screen while the experiment ran. 
   
   ![ezgif com-gif-maker](https://user-images.githubusercontent.com/65748386/110715395-2728cd00-81d3-11eb-8a09-5b08ae2a6b6f.gif)
 
